@@ -32,7 +32,11 @@ export function AuthDropdown({ user, className, ...props }: AuthDropdownProps) {
       {user ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant='secondary' className={cn('size-8 rounded-full', className)} {...props}>
+            <Button
+              variant='secondary'
+              className={cn('size-8 rounded-full focus-visible:ring-0', className)}
+              {...props}
+            >
               <Avatar className='size-8'>
                 <AvatarImage src={user.imageUrl} alt={user.username ?? ''} />
                 <AvatarFallback>{initials}</AvatarFallback>
