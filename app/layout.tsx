@@ -3,7 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import { fontHeading, fontMono, fontSans } from '@/lib/fonts'
 
-import './globals.css'
+import '@/styles/globals.css'
 
 export const viewport: Viewport = {
   colorScheme: 'dark light',
