@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { env } from '@/env.js'
 
-import { PageHeader, PageHeaderDescription, PageHeaderHeading } from '@/components/page-header'
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from '@/components/app-ui/page-header'
 import { Shell } from '@/components/app-ui/shell'
 import { LogOutButtons } from '@/app/(auth)/_components/logout-buttons'
 
