@@ -8,16 +8,16 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-    DATABASE_URL: z.string().url(),
+    // DATABASE_URL: z.string().url(),
     CLERK_SECRET_KEY: z.string().min(1),
-    RESEND_API_KEY: z.string().min(1),
-    EMAIL_FROM_ADDRESS: z.string().email(),
-    UPLOADTHING_SECRET: z.string().min(1),
-    UPLOADTHING_APP_ID: z.string().min(1),
-    STRIPE_API_KEY: z.string().min(1),
-    STRIPE_WEBHOOK_SECRET: z.string().min(1),
-    STRIPE_STD_MONTHLY_PRICE_ID: z.string().min(1),
-    STRIPE_PRO_MONTHLY_PRICE_ID: z.string().min(1),
+    // RESEND_API_KEY: z.string().min(1),
+    // EMAIL_FROM_ADDRESS: z.string().email(),
+    // UPLOADTHING_SECRET: z.string().min(1),
+    // UPLOADTHING_APP_ID: z.string().min(1),
+    // STRIPE_API_KEY: z.string().min(1),
+    // STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    // STRIPE_STD_MONTHLY_PRICE_ID: z.string().min(1),
+    // STRIPE_PRO_MONTHLY_PRICE_ID: z.string().min(1),
   },
 
   /**
@@ -30,7 +30,7 @@ export const env = createEnv({
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
     NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().min(1),
     NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().min(1),
-    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
+    // NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
   },
 
   /**

@@ -1,16 +1,16 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import { useSignIn } from "@clerk/nextjs"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import type { z } from "zod"
+import * as React from 'react'
+import { useRouter } from 'next/navigation'
+import { useSignIn } from '@clerk/nextjs'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import type { z } from 'zod'
 
-import { showErrorToast } from "@/lib/handle-error"
-import { resetPasswordSchema } from "@/lib/validations/auth"
-import { Button } from "@/components/ui/button"
+import { showErrorToast } from '@/lib/handle-error'
+import { resetPasswordSchema } from '@/lib/validations/auth'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -19,14 +19,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-} from "@/components/ui/input-otp"
-import { Icons } from "@/components/icons"
-import { PasswordInput } from "@/components/password-input"
+} from '@/components/ui/form'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
+import { Icons } from '@/components/icons'
+import { PasswordInput } from '@/components/password-input'
 
 type Inputs = z.infer<typeof resetPasswordSchema>
 
@@ -39,9 +35,9 @@ export function ResetPasswordConfirmForm() {
   const form = useForm<Inputs>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
-      password: "",
-      confirmPassword: "",
-      code: "",
+      password: '',
+      confirmPassword: '',
+      code: '',
     },
   })
 
@@ -52,19 +48,19 @@ export function ResetPasswordConfirmForm() {
 
     try {
       const attemptFirstFactor = await signIn.attemptFirstFactor({
-        strategy: "reset_password_email_code",
+        strategy: 'reset_password_email_code',
         code: data.code,
         password: data.password,
       })
 
-      if (attemptFirstFactor.status === "needs_second_factor") {
+      if (attemptFirstFactor.status === 'needs_second_factor') {
         // TODO: implement 2FA (requires clerk pro plan)
-      } else if (attemptFirstFactor.status === "complete") {
+      } else if (attemptFirstFactor.status === 'complete') {
         await setActive({
           session: attemptFirstFactor.createdSessionId,
         })
         router.push(`${window.location.origin}/`)
-        toast.success("Password reset successfully.")
+        toast.success('Password reset successfully.')
       } else {
         console.error(attemptFirstFactor)
       }
@@ -77,15 +73,15 @@ export function ResetPasswordConfirmForm() {
 
   return (
     <Form {...form}>
-      <form className="grid gap-4" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className='grid gap-4' onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
-          name="password"
+          name='password'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="*********" {...field} />
+                <PasswordInput placeholder='*********' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,12 +89,12 @@ export function ResetPasswordConfirmForm() {
         />
         <FormField
           control={form.control}
-          name="confirmPassword"
+          name='confirmPassword'
           render={({ field }) => (
             <FormItem>
               <FormLabel>Confirm Password</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="*********" {...field} />
+                <PasswordInput placeholder='*********' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -106,7 +102,7 @@ export function ResetPasswordConfirmForm() {
         />
         <FormField
           control={form.control}
-          name="code"
+          name='code'
           render={({ field }) => (
             <FormItem>
               <FormLabel>One-Time Password</FormLabel>
@@ -122,31 +118,19 @@ export function ResetPasswordConfirmForm() {
                   </InputOTPGroup>
                 </InputOTP>
               </FormControl>
-              <FormDescription>
-                Please enter the 6-digit code sent to your email.
-              </FormDescription>
+              <FormDescription>Please enter the 6-digit code sent to your email.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="mt-2 flex flex-col-reverse gap-2 sm:flex-row">
-          <Button
-            type="button"
-            variant="outline"
-            className="w-full"
-            onClick={() => router.back()}
-          >
+        <div className='mt-2 flex flex-col-reverse gap-2 sm:flex-row'>
+          <Button type='button' variant='outline' className='w-full' onClick={() => router.back()}>
             Go back
           </Button>
-          <Button className="w-full" disabled={loading}>
-            {loading && (
-              <Icons.spinner
-                className="mr-2 size-4 animate-spin"
-                aria-hidden="true"
-              />
-            )}
+          <Button className='w-full' disabled={loading}>
+            {loading && <Icons.spinner className='mr-2 size-4 animate-spin' aria-hidden='true' />}
             Reset password
-            <span className="sr-only">Reset password</span>
+            <span className='sr-only'>Reset password</span>
           </Button>
         </div>
       </form>
