@@ -1,6 +1,7 @@
 import type { User } from '@clerk/nextjs/server'
 
 import { AuthDropdown } from '@/components/layouts/auth-dropdown'
+import { ModeToggle } from './mode-toggle'
 
 interface SiteHeaderProps {
   user: User | null
@@ -17,6 +18,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             {/* <ProductsCombobox /> */}
             {/* <CartSheet /> */}
             <AuthDropdown user={user} />
+            <ModeToggle />
           </nav>
         </div>
       </div>

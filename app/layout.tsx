@@ -2,6 +2,8 @@ import type { Viewport } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import { fontHeading, fontMono, fontSans } from '@/lib/fonts'
+import { ThemeProvider } from '@/components/layouts/providers'
+import { Toaster } from '@/components/ui/toaster'
 
 import '@/styles/globals.css'
 
@@ -27,17 +29,17 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
               fontHeading.variable
             )}
           >
-            {/* <ThemeProvider
+            <ThemeProvider
               attribute='class'
               defaultTheme='system'
               enableSystem
               disableTransitionOnChange
-            > */}
-            {children}
-            {/* <TailwindIndicator />
+            >
+              {children}
+              {/* <TailwindIndicator />
               <Analytics /> */}
-            {/* </ThemeProvider> */}
-            {/* <Toaster /> */}
+            </ThemeProvider>
+            <Toaster />
           </body>
         </html>
       </ClerkProvider>
