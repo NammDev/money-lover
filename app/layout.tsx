@@ -1,4 +1,4 @@
-import type { Viewport } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import { fontHeading, fontMono, fontSans } from '@/lib/fonts'
@@ -6,6 +6,13 @@ import { ThemeProvider } from '@/components/layouts/providers'
 import { Toaster } from '@/components/ui/toaster'
 
 import '@/styles/globals.css'
+import { env } from '@/env'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  title: 'Budget Tracker',
+  description: 'CodeWithKliton',
+}
 
 export const viewport: Viewport = {
   colorScheme: 'dark light',
