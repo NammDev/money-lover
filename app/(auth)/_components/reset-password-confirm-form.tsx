@@ -21,8 +21,8 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
-import { Icons } from '@/components/icons'
-import { PasswordInput } from '@/components/password-input'
+import { Icons } from '@/components/app-ui/icons'
+import { PasswordInput } from '@/components/app-ui/password-input'
 
 type Inputs = z.infer<typeof resetPasswordSchema>
 

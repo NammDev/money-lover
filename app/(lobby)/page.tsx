@@ -1,5 +1,5 @@
-import { Icons } from '@/components/icons'
-import { Shell } from '@/components/shell'
+import { Icons } from '@/components/app-ui/icons'
+import { Shell } from '@/components/app-ui/shell'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'

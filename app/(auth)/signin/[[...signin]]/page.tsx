@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Shell } from '@/components/shell'
+import { Shell } from '@/components/app-ui/shell'
 import { OAuthSignIn } from '@/app/(auth)/_components/oauth-signin'
 import { SignInForm } from '@/app/(auth)/_components/signin-form'
 

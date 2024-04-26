@@ -19,8 +19,8 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Icons } from '@/components/icons'
-import { PasswordInput } from '@/components/password-input'
+import { Icons } from '@/components/app-ui/icons'
+import { PasswordInput } from '@/components/app-ui/password-input'
 
 type Inputs = z.infer<typeof authSchema>
 

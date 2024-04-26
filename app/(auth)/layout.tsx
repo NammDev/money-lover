@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { siteConfig } from '@/config/site'
-import { Icons } from '@/components/icons'
+import { Icons } from '@/components/app-ui/icons'
 
 export default function AuthLayout({ children }: React.PropsWithChildren) {
   return (

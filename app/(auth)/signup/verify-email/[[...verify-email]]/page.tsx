@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 import { env } from '@/env.js'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Shell } from '@/components/shell'
+import { Shell } from '@/components/app-ui/shell'
 import { VerifyEmailForm } from '@/app/(auth)/_components/verify-email-form'
 
 export const metadata: Metadata = {

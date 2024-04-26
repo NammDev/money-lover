@@ -19,7 +19,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Icons } from '@/components/icons'
+import { Icons } from '@/components/app-ui/icons'
 
 type Inputs = z.infer<typeof verifyEmailSchema>
 
