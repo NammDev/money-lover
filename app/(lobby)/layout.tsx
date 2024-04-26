@@ -1,5 +1,5 @@
 import { getCachedUser } from '@/lib/queries/user'
-// import { SiteFooter } from '@/components/layouts/site-footer'
+import { SiteFooter } from '@/components/layouts/site-footer'
 import { SiteHeader } from '@/components/layouts/site-header'
 
 interface LobyLayoutProps
@@ -17,7 +17,7 @@ export default async function LobyLayout({ children }: LobyLayoutProps) {
         {children}
         {/* {modal} */}
       </main>
-      {/* <SiteFooter /> */}
+      <SiteFooter />
     </div>
   )
 }

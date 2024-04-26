@@ -16,6 +16,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { Icons } from '@/components/app-ui/icons'
+import { PiggyBank } from 'lucide-react'
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -25,8 +26,10 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className='hidden gap-6 lg:flex'>
       <Link href='/' className='hidden items-center space-x-2 lg:flex'>
-        <Icons.logo className='size-6' aria-hidden='true' />
-        <span className='hidden font-bold lg:inline-block'>{siteConfig.name}</span>
+        <PiggyBank className='size-10 stroke stroke-green-500 stroke-[1.4]' aria-hidden='true' />
+        <span className='hidden lg:inline-block bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-2xl font-bold leading-tight tracking-tighter text-transparent'>
+          {siteConfig.name}
+        </span>
         <span className='sr-only'>Home</span>
       </Link>
       <NavigationMenu>

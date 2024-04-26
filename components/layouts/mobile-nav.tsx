@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Icons } from '@/components/app-ui/icons'
+import { PiggyBank } from 'lucide-react'
 
 interface MobileNavProps {
   items?: MainNavItem[]
@@ -48,8 +49,13 @@ export function MobileNav({ items }: MobileNavProps) {
       <SheetContent side='left' className='pl-1 pr-0 pt-9'>
         <div className='w-full px-7'>
           <Link href='/' className='flex items-center' onClick={() => setOpen(false)}>
-            <Icons.logo className='mr-2 size-4' aria-hidden='true' />
-            <span className='font-bold'>{siteConfig.name}</span>
+            <PiggyBank
+              className='mr-2 size-8 stroke stroke-green-500 stroke-[1.2]'
+              aria-hidden='true'
+            />
+            <span className='bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-xl font-bold leading-tight tracking-tighter text-transparent'>
+              {siteConfig.name}
+            </span>
             <span className='sr-only'>Home</span>
           </Link>
         </div>
