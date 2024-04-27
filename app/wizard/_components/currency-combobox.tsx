@@ -32,7 +32,6 @@ export function CurrencyComboBox({ userId, onSubmit, userSetting }: CurrencyComb
   if (isDesktop) {
     return (
       <>
-        <Separator />
         <Card className='w-full'>
           <CardHeader>
             <CardTitle>Currency</CardTitle>
@@ -68,17 +67,32 @@ export function CurrencyComboBox({ userId, onSubmit, userSetting }: CurrencyComb
   }
 
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button variant='outline' className='w-full justify-start'>
-          {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <div className='mt-4 border-t'>
-          <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
-        </div>
-      </DrawerContent>
-    </Drawer>
+    <>
+      <Separator />
+      <Card className='w-full'>
+        <CardHeader>
+          <CardTitle>Currency</CardTitle>
+          <CardDescription>Set your default currency for transactions</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Drawer open={open} onOpenChange={setOpen}>
+            <DrawerTrigger asChild>
+              <Button variant='outline' className='w-full justify-start'>
+                {selectedOption ? <>{selectedOption.label}</> : <>Set currency</>}
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+              <div className='mt-4 border-t'>
+                <OptionList setOpen={setOpen} setSelectedOption={setSelectedOption} />
+              </div>
+            </DrawerContent>
+          </Drawer>
+        </CardContent>
+      </Card>
+      <Separator />
+      <Button className='w-full' asChild>
+        <Link href={'/'}>I&apos;m done! Take me to the dashboard</Link>
+      </Button>
+    </>
   )
 }

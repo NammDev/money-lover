@@ -1,27 +1,14 @@
 import Logo from '@/components/app-ui/logo-piggy'
-import { getCreateUserSetting, updateUserSetting } from '@/lib/actions/user-setting'
 import { getCachedUser } from '@/lib/queries/user'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { CurrencyComboBox } from './_components/currency-combobox'
-import { toast } from 'sonner'
-import { showErrorToast } from '@/lib/handle-error'
+import { ServerCurrencyComboBox } from './_components/server-currency-combobox'
+import { Separator } from '@/components/ui/separator'
 
-async function page() {
+async function WizardPage() {
   const user = await getCachedUser()
   if (!user) {
     redirect('/signin')
-  }
-
-  const userSetting = await getCreateUserSetting(user.id)
-
-  async function onSubmitCurrency(userId: string, currencyValue: string) {
-    'use server'
-    try {
-      await updateUserSetting(userId, currencyValue)
-    } catch (err) {
-      showErrorToast(err)
-    }
   }
 
   return (
@@ -38,7 +25,8 @@ async function page() {
           You can change these settings at any time
         </h3>
       </div>
-      <CurrencyComboBox onSubmit={onSubmitCurrency} userId={user.id} userSetting={userSetting} />
+      <Separator />
+      <ServerCurrencyComboBox />
       <div className='mt-8'>
         <Logo />
       </div>
@@ -46,4 +34,4 @@ async function page() {
   )
 }
 
-export default page
+export default WizardPage
