@@ -7,7 +7,7 @@ import { getCachedUser } from '@/lib/queries/user'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { CurrencyComboBox } from './_components/CurrencyComboBox'
+import { CurrencyComboBox } from './_components/currency-combobox'
 
 async function page() {
   const user = await getCachedUser()
@@ -16,6 +16,17 @@ async function page() {
   }
 
   const userSetting = await getCreateUserSetting(user.id)
+
+  // toast.loading('Updating currency...')
+  // startTransition(async () => {
+  //   try {
+  //     await updateUserSetting(userId, currencyValue)
+  //     toast.success(`Currency updated successuflly 🎉`)
+  //     // router.push(`/dashboard`)
+  //   } catch (err) {
+  //     showErrorToast(err)
+  //   }
+  // })
 
   return (
     <div className='container flex max-w-2xl flex-col items-center justify-between gap-4'>

@@ -20,3 +20,7 @@ export function getUserEmail(user: User | null) {
 
   return email
 }
+
+export function convertToUppercase(str: string) {
+  return str.toUpperCase()
+}
