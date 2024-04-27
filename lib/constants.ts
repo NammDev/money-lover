@@ -10,3 +10,5 @@ export const redirects = {
 } as const
 
 export const dbPrefix = 'skateshop'
+
+export const MAX_DATE_RANGE_DAYS = 90
