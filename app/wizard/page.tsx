@@ -2,8 +2,11 @@ import Logo from '@/components/app-ui/logo-piggy'
 import { getCachedUser } from '@/lib/queries/user'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import { ServerCurrencyComboBox } from './_components/server-currency-combobox'
 import { Separator } from '@/components/ui/separator'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { CurrencyComboBox } from '@/components/app-logic/currency-combobox'
 
 async function WizardPage() {
   const user = await getCachedUser()
@@ -26,7 +29,19 @@ async function WizardPage() {
         </h3>
       </div>
       <Separator />
-      <ServerCurrencyComboBox />
+      <Card className='w-full'>
+        <CardHeader>
+          <CardTitle>Currency</CardTitle>
+          <CardDescription>Set your default currency for transactions</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <CurrencyComboBox userId={user.id} />
+        </CardContent>
+      </Card>
+      <Separator />
+      <Button className='w-full' asChild>
+        <Link href={'/'}>I&apos;m done! Take me to the dashboard</Link>
+      </Button>
       <div className='mt-8'>
         <Logo />
       </div>

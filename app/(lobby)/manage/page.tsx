@@ -1,4 +1,3 @@
-import { ServerCurrencyComboBox } from '@/app/wizard/_components/server-currency-combobox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import React from 'react'
 // import { CategoryList } from './_components/category-list'
@@ -17,7 +16,6 @@ function ManagePage() {
       </div>
       {/* END HEDER */}
       <div className='container flex flex-col gap-4 p-4'>
-        <ServerCurrencyComboBox />
         {/* <CategoryList type='income' />
         <CategoryList type='expense' /> */}
       </div>

@@ -1,3 +1,5 @@
+'use server'
+
 import { db } from '../db'
 import { unstable_cache as cache, unstable_noStore as noStore, revalidatePath } from 'next/cache'
 
