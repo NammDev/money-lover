@@ -12,6 +12,7 @@ import { OptionList } from './option-list'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
+import { toast } from 'sonner'
 
 type CurrencyComboBoxProps = {
   userId: string
@@ -55,8 +56,9 @@ export function CurrencyComboBox({ userId, onSubmit, userSetting }: CurrencyComb
           <Link
             onClick={() => {
               onSubmit(userId, selectedOption?.value)
+              toast.success(`Currency updated successuflly 🎉`)
             }}
-            href={'/'}
+            href={'/dashboard'}
           >
             I&apos;m done! Take me to the dashboard
           </Link>

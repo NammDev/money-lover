@@ -19,8 +19,6 @@ async function page() {
     'use server'
     try {
       await updateUserSetting(userId, currencyValue)
-      // toast.success(`Currency updated successuflly 🎉`)
-      redirect(`/dashboard`)
     } catch (err) {
       showErrorToast(err)
     }
