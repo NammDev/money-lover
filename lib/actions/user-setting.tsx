@@ -1,7 +1,7 @@
 import { db } from '../db'
 import { unstable_cache as cache, unstable_noStore as noStore, revalidatePath } from 'next/cache'
 
-export async function getUserSetting(userId: string) {
+export async function getCacheUserSetting(userId: string) {
   return await cache(
     async () => {
       return db.userSettings.findUnique({
@@ -16,6 +16,14 @@ export async function getUserSetting(userId: string) {
       tags: ['userSettings'],
     }
   )()
+}
+
+export async function getUserSetting(userId: string) {
+  return db.userSettings.findUnique({
+    where: {
+      userId: userId,
+    },
+  })
 }
 
 export async function createUserSetting(userId: string) {

@@ -1,13 +1,11 @@
 import Logo from '@/components/app-ui/logo-piggy'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { getCreateUserSetting } from '@/lib/actions/user-setting'
+import { getCreateUserSetting, updateUserSetting } from '@/lib/actions/user-setting'
 import { getCachedUser } from '@/lib/queries/user'
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { CurrencyComboBox } from './_components/currency-combobox'
+import { toast } from 'sonner'
+import { showErrorToast } from '@/lib/handle-error'
 
 async function page() {
   const user = await getCachedUser()
@@ -17,16 +15,16 @@ async function page() {
 
   const userSetting = await getCreateUserSetting(user.id)
 
-  // toast.loading('Updating currency...')
-  // startTransition(async () => {
-  //   try {
-  //     await updateUserSetting(userId, currencyValue)
-  //     toast.success(`Currency updated successuflly 🎉`)
-  //     // router.push(`/dashboard`)
-  //   } catch (err) {
-  //     showErrorToast(err)
-  //   }
-  // })
+  async function onSubmitCurrency(userId: string, currencyValue: string) {
+    'use server'
+    try {
+      await updateUserSetting(userId, currencyValue)
+      // toast.success(`Currency updated successuflly 🎉`)
+      redirect(`/dashboard`)
+    } catch (err) {
+      showErrorToast(err)
+    }
+  }
 
   return (
     <div className='container flex max-w-2xl flex-col items-center justify-between gap-4'>
@@ -42,20 +40,7 @@ async function page() {
           You can change these settings at any time
         </h3>
       </div>
-      <Separator />
-      <Card className='w-full'>
-        <CardHeader>
-          <CardTitle>Currency</CardTitle>
-          <CardDescription>Set your default currency for transactions</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <CurrencyComboBox userId={user.id} userSetting={userSetting} />
-        </CardContent>
-      </Card>
-      <Separator />
-      <Button className='w-full' asChild>
-        <Link href={'/'}>I&apos;m done! Take me to the dashboard</Link>
-      </Button>
+      <CurrencyComboBox onSubmit={onSubmitCurrency} userId={user.id} userSetting={userSetting} />
       <div className='mt-8'>
         <Logo />
       </div>

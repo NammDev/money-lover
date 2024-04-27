@@ -14,7 +14,7 @@ export function OptionList({
   setSelectedOption,
 }: {
   setOpen: (open: boolean) => void
-  setSelectedOption: (currency: Currency | undefined) => void
+  setSelectedOption: (currency: Currency) => void
 }) {
   return (
     <Command>
@@ -27,9 +27,7 @@ export function OptionList({
               key={currency.value}
               value={currency.value}
               onSelect={(value) => {
-                setSelectedOption(
-                  Currencies.find((c) => c.value === convertToUppercase(value)) || undefined
-                )
+                setSelectedOption(Currencies.find((c) => c.value === convertToUppercase(value))!)
                 setOpen(false)
               }}
             >
