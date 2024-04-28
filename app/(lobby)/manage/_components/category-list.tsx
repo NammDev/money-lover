@@ -11,6 +11,8 @@ import SkeletonWrapper from '@/components/skeletons/wrapper-skeleton'
 import { TransactionType } from '@/types'
 import { getCategoriesByType } from '@/lib/actions/categories'
 import { Category } from '@prisma/client'
+import { CategoryCard } from './category-card'
+import CreateCategoryDialog from '@/components/dialog/create-category'
 
 type CategoryListProps = {
   userId: string
@@ -24,8 +26,6 @@ export function CategoryList({ userId, type }: CategoryListProps) {
   })
 
   const dataAvailable = categoriesQuery.data && categoriesQuery.data.length > 0
-
-  console.log(categoriesQuery.data)
 
   return (
     <SkeletonWrapper isLoading={categoriesQuery.isLoading}>
@@ -44,7 +44,8 @@ export function CategoryList({ userId, type }: CategoryListProps) {
               </div>
             </div>
 
-            {/* <CreateCategoryDialog
+            <CreateCategoryDialog
+              userId={userId}
               type={type}
               successCallback={() => categoriesQuery.refetch()}
               trigger={
@@ -53,7 +54,7 @@ export function CategoryList({ userId, type }: CategoryListProps) {
                   Create category
                 </Button>
               }
-            /> */}
+            />
           </CardTitle>
         </CardHeader>
         <Separator />
@@ -73,8 +74,7 @@ export function CategoryList({ userId, type }: CategoryListProps) {
         {dataAvailable && (
           <div className='grid grid-flow-row gap-2 p-2 sm:grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             {categoriesQuery.data.map((category: Category) => (
-              // <CategoryCard category={category} key={category.name} />
-              <h1 key={category.name}>{category.name}</h1>
+              <CategoryCard category={category} key={category.name} />
             ))}
           </div>
         )}

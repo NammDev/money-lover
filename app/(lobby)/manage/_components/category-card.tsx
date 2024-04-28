@@ -1,4 +1,4 @@
-import DeleteCategoryDialog from '@/app/(dashboard)/_components/DeleteCategoryDialog'
+// import DeleteCategoryDialog from '@/app/(dashboard)/_components/DeleteCategoryDialog'
 import { Button } from '@/components/ui/button'
 import { Category } from '@prisma/client'
 import { TrashIcon } from 'lucide-react'
@@ -13,7 +13,7 @@ export function CategoryCard({ category }: { category: Category }) {
         </span>
         <span>{category.name}</span>
       </div>
-      <DeleteCategoryDialog
+      {/* <DeleteCategoryDialog
         category={category}
         trigger={
           <Button
@@ -24,7 +24,7 @@ export function CategoryCard({ category }: { category: Category }) {
             Remove
           </Button>
         }
-      />
+      /> */}
     </div>
   )
 }
