@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import { getUserSetting } from '@/lib/actions/user-setting'
 import CreateTransactionDialog from '@/components/dialog/create-transaction'
+import Overview from './_components/overview'
 
 async function page() {
   const user = await getCachedUser()
@@ -53,8 +54,8 @@ async function page() {
           </div>
         </div>
       </div>
-      {/* <Overview userSettings={userSettings} />
-      <History userSettings={userSettings} /> */}
+      <Overview userSettings={userSettings} />
+      {/* <History userSettings={userSettings} /> */}
     </div>
   )
 }
