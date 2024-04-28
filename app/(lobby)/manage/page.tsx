@@ -1,8 +1,15 @@
+import { CurrencyComboBox } from '@/components/app-logic/currency-combobox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { getCachedUser } from '@/lib/queries/user'
+import { redirect } from 'next/navigation'
 import React from 'react'
-// import { CategoryList } from './_components/category-list'
+import { CategoryList } from './_components/category-list'
 
-function ManagePage() {
+async function ManagePage() {
+  const user = await getCachedUser()
+  if (!user) {
+    redirect('/signin')
+  }
   return (
     <>
       {/* HEADER */}
@@ -16,8 +23,17 @@ function ManagePage() {
       </div>
       {/* END HEDER */}
       <div className='container flex flex-col gap-4 p-4'>
-        {/* <CategoryList type='income' />
-        <CategoryList type='expense' /> */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Currency</CardTitle>
+            <CardDescription>Set your default currency for transactions</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <CurrencyComboBox userId={user.id} />
+          </CardContent>
+        </Card>
+        <CategoryList userId={user.id} type='income' />
+        <CategoryList userId={user.id} type='expense' />
       </div>
     </>
   )

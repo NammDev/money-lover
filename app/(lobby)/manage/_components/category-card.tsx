@@ -1,15 +1,7 @@
 import DeleteCategoryDialog from '@/app/(dashboard)/_components/DeleteCategoryDialog'
-import { CurrencyComboBox } from '@/components/CurrencyComboBox'
-import CreateCategoryDialog from '@/app/(dashboard)/_components/CreateCategoryDialog'
-import SkeletonWrapper from '@/components/SkeletonWrapper'
-import { TransactionType } from '@/lib/types'
-import { useQuery } from '@tanstack/react-query'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import { Category } from '@prisma/client'
-import { PlusSquare, TrashIcon, TrendingDown, TrendingUp } from 'lucide-react'
+import { TrashIcon } from 'lucide-react'
 import React from 'react'
 
 export function CategoryCard({ category }: { category: Category }) {

@@ -4,6 +4,10 @@
 
 import type { Icons } from '@/components/app-ui/icons'
 
+export type TransactionType = 'income' | 'expense'
+export type Timeframe = 'month' | 'year'
+export type Period = { year: number; month: number }
+
 export interface NavItem {
   title: string
   href?: string

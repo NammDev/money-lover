@@ -1,24 +1,31 @@
-import DeleteCategoryDialog from '@/app/(dashboard)/_components/DeleteCategoryDialog'
-import { CurrencyComboBox } from '@/components/CurrencyComboBox'
-import CreateCategoryDialog from '@/app/(dashboard)/_components/CreateCategoryDialog'
-import SkeletonWrapper from '@/components/SkeletonWrapper'
-import { TransactionType } from '@/lib/types'
+'use client'
+
 import { useQuery } from '@tanstack/react-query'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Category } from '@prisma/client'
-import { PlusSquare, TrashIcon, TrendingDown, TrendingUp } from 'lucide-react'
+import { PlusSquare, TrendingDown, TrendingUp } from 'lucide-react'
 import React from 'react'
+import SkeletonWrapper from '@/components/skeletons/wrapper-skeleton'
+import { TransactionType } from '@/types'
+import { getCategoriesByType } from '@/lib/actions/categories'
+import { Category } from '@prisma/client'
 
-export function CategoryList({ type }: { type: TransactionType }) {
+type CategoryListProps = {
+  userId: string
+  type: TransactionType
+}
+
+export function CategoryList({ userId, type }: CategoryListProps) {
   const categoriesQuery = useQuery({
     queryKey: ['categories', type],
-    queryFn: () => fetch(`/api/categories?type=${type}`).then((res) => res.json()),
+    queryFn: () => getCategoriesByType(userId, type),
   })
 
   const dataAvailable = categoriesQuery.data && categoriesQuery.data.length > 0
+
+  console.log(categoriesQuery.data)
 
   return (
     <SkeletonWrapper isLoading={categoriesQuery.isLoading}>
@@ -37,7 +44,7 @@ export function CategoryList({ type }: { type: TransactionType }) {
               </div>
             </div>
 
-            <CreateCategoryDialog
+            {/* <CreateCategoryDialog
               type={type}
               successCallback={() => categoriesQuery.refetch()}
               trigger={
@@ -46,7 +53,7 @@ export function CategoryList({ type }: { type: TransactionType }) {
                   Create category
                 </Button>
               }
-            />
+            /> */}
           </CardTitle>
         </CardHeader>
         <Separator />
@@ -66,7 +73,8 @@ export function CategoryList({ type }: { type: TransactionType }) {
         {dataAvailable && (
           <div className='grid grid-flow-row gap-2 p-2 sm:grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             {categoriesQuery.data.map((category: Category) => (
-              <CategoryCard category={category} key={category.name} />
+              // <CategoryCard category={category} key={category.name} />
+              <h1 key={category.name}>{category.name}</h1>
             ))}
           </div>
         )}
