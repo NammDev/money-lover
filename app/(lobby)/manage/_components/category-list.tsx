@@ -74,7 +74,7 @@ export function CategoryList({ userId, type }: CategoryListProps) {
         {dataAvailable && (
           <div className='grid grid-flow-row gap-2 p-2 sm:grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
             {categoriesQuery.data.map((category: Category) => (
-              <CategoryCard category={category} key={category.name} />
+              <CategoryCard userId={userId} category={category} key={category.name} />
             ))}
           </div>
         )}

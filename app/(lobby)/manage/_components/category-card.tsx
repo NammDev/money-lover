@@ -1,10 +1,10 @@
-// import DeleteCategoryDialog from '@/app/(dashboard)/_components/DeleteCategoryDialog'
+import DeleteCategoryDialog from '@/components/dialog/delete-category'
 import { Button } from '@/components/ui/button'
 import { Category } from '@prisma/client'
 import { TrashIcon } from 'lucide-react'
 import React from 'react'
 
-export function CategoryCard({ category }: { category: Category }) {
+export function CategoryCard({ category, userId }: { category: Category; userId: string }) {
   return (
     <div className='flex border-separate flex-col justify-between rounded-md border shadow-md shadow-black/[0.1] dark:shadow-white/[0.1]'>
       <div className='flex flex-col items-center gap-2 p-4'>
@@ -13,7 +13,8 @@ export function CategoryCard({ category }: { category: Category }) {
         </span>
         <span>{category.name}</span>
       </div>
-      {/* <DeleteCategoryDialog
+      <DeleteCategoryDialog
+        userId={userId}
         category={category}
         trigger={
           <Button
@@ -24,7 +25,7 @@ export function CategoryCard({ category }: { category: Category }) {
             Remove
           </Button>
         }
-      /> */}
+      />
     </div>
   )
 }

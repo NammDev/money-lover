@@ -2,7 +2,12 @@
 
 import { TransactionType } from '@/types'
 import { db } from '../db'
-import { CreateCategorySchema, CreateCategorySchemaType } from '../schemas/categories'
+import {
+  CreateCategorySchema,
+  CreateCategorySchemaType,
+  DeleteCategorySchema,
+  DeleteCategorySchemaType,
+} from '../schemas/categories'
 
 export async function getCategoriesByType(userId: string, type: TransactionType) {
   return db.category.findMany({
@@ -29,6 +34,23 @@ export async function createCategory(userId: string, form: CreateCategorySchemaT
       name,
       icon,
       type,
+    },
+  })
+}
+
+export async function deleteCategory(userId: string, form: DeleteCategorySchemaType) {
+  const parsedBody = DeleteCategorySchema.safeParse(form)
+  if (!parsedBody.success) {
+    throw new Error('bad request')
+  }
+
+  return await db.category.delete({
+    where: {
+      name_userId_type: {
+        userId: userId,
+        name: parsedBody.data.name,
+        type: parsedBody.data.type,
+      },
     },
   })
 }
