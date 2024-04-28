@@ -1,4 +1,3 @@
-// import CreateTransactionDialog from '@/app/(dashboard)/_components/CreateTransactionDialog'
 // import History from '@/app/(dashboard)/_components/History'
 // import Overview from '@/app/(dashboard)/_components/Overview'
 import { Button } from '@/components/ui/button'
@@ -6,6 +5,7 @@ import { getCachedUser } from '@/lib/queries/user'
 import { redirect } from 'next/navigation'
 import React from 'react'
 import { getUserSetting } from '@/lib/actions/user-setting'
+import CreateTransactionDialog from '@/components/dialog/create-transaction'
 
 async function page() {
   const user = await getCachedUser()
@@ -25,9 +25,8 @@ async function page() {
           <p className='text-3xl font-bold'>Hello, {user.firstName}! 👋</p>
 
           <div className='flex items-center gap-3'>
-            <p>New income</p>
-            <p>New expense</p>
-            {/* <CreateTransactionDialog
+            <CreateTransactionDialog
+              userId={user.id}
               trigger={
                 <Button
                   variant={'outline'}
@@ -37,9 +36,10 @@ async function page() {
                 </Button>
               }
               type='income'
-            /> */}
+            />
 
-            {/* <CreateTransactionDialog
+            <CreateTransactionDialog
+              userId={user.id}
               trigger={
                 <Button
                   variant={'outline'}
@@ -49,12 +49,10 @@ async function page() {
                 </Button>
               }
               type='expense'
-            /> */}
+            />
           </div>
         </div>
       </div>
-      <h1>Overview</h1>
-      <h1>Setting</h1>
       {/* <Overview userSettings={userSettings} />
       <History userSettings={userSettings} /> */}
     </div>
