@@ -21,6 +21,29 @@ export async function getCategoriesByType(userId: string, type: TransactionType)
   })
 }
 
+export async function getCategoriesStats(userId: string, from: Date, to: Date) {
+  return await db.transaction.groupBy({
+    by: ['type', 'category', 'categoryIcon'],
+    where: {
+      userId,
+      date: {
+        gte: from,
+        lte: to,
+      },
+    },
+    _sum: {
+      amount: true,
+    },
+    orderBy: {
+      _sum: {
+        amount: 'desc',
+      },
+    },
+  })
+}
+
+export type GetCategoriesStatsResponseType = Awaited<ReturnType<typeof getCategoriesStats>>
+
 export async function createCategory(userId: string, form: CreateCategorySchemaType) {
   const parsedBody = CreateCategorySchema.safeParse(form)
   if (!parsedBody.success) {

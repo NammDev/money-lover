@@ -1,5 +1,3 @@
-// import History from '@/app/(dashboard)/_components/History'
-// import Overview from '@/app/(dashboard)/_components/Overview'
 import { Button } from '@/components/ui/button'
 import { getCachedUser } from '@/lib/queries/user'
 import { redirect } from 'next/navigation'
@@ -7,8 +5,9 @@ import React from 'react'
 import { getUserSetting } from '@/lib/actions/user-setting'
 import CreateTransactionDialog from '@/components/dialog/create-transaction'
 import Overview from './_components/overview'
+import History from './_components/history'
 
-async function page() {
+async function DashboardPage() {
   const user = await getCachedUser()
   if (!user) {
     redirect('/signin')
@@ -55,9 +54,9 @@ async function page() {
         </div>
       </div>
       <Overview userSettings={userSettings} />
-      {/* <History userSettings={userSettings} /> */}
+      <History userSettings={userSettings} />
     </div>
   )
 }
 
-export default page
+export default DashboardPage

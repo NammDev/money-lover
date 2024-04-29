@@ -1,6 +1,6 @@
 'use client'
 
-import { GetFormatterForCurrency } from '@/lib/utils'
+import { DateToUTCDate, GetFormatterForCurrency } from '@/lib/utils'
 import { UserSettings } from '@prisma/client'
 import { useQuery } from '@tanstack/react-query'
 import { TrendingDown, TrendingUp, Wallet } from 'lucide-react'
@@ -20,7 +20,7 @@ type GetBalanceStatsResponseType = Awaited<ReturnType<typeof getBalanceStats>>
 function StatsCards({ from, to, userSettings }: Props) {
   const statsQuery = useQuery<GetBalanceStatsResponseType>({
     queryKey: ['overview', 'stats', from, to],
-    queryFn: () => getBalanceStats(userSettings.userId, from, to),
+    queryFn: () => getBalanceStats(userSettings.userId, DateToUTCDate(from), DateToUTCDate(to)),
   })
 
   const formatter = useMemo(() => {
