@@ -3,7 +3,7 @@
 import { db } from '../db'
 import { CreateTransactionSchema, CreateTransactionSchemaType } from '../schemas/transactions'
 
-export async function CreateTransaction(userId: string, form: CreateTransactionSchemaType) {
+export async function createTransaction(userId: string, form: CreateTransactionSchemaType) {
   const parsedBody = CreateTransactionSchema.safeParse(form)
   if (!parsedBody.success) {
     throw new Error(parsedBody.error.message)
@@ -91,4 +91,25 @@ export async function CreateTransaction(userId: string, form: CreateTransactionS
       },
     }),
   ])
+}
+
+export async function getBalanceStats(userId: string, from: Date, to: Date) {
+  const totals = await db.transaction.groupBy({
+    by: ['type'],
+    where: {
+      userId,
+      date: {
+        gte: from,
+        lte: to,
+      },
+    },
+    _sum: {
+      amount: true,
+    },
+  })
+
+  return {
+    expense: totals.find((t) => t.type === 'expense')?._sum.amount || 0,
+    income: totals.find((t) => t.type === 'income')?._sum.amount || 0,
+  }
 }

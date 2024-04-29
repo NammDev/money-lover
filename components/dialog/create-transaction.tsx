@@ -35,7 +35,7 @@ import { toast } from 'sonner'
 import { TransactionType } from '@/types'
 import { CreateTransactionSchema, CreateTransactionSchemaType } from '@/lib/schemas/transactions'
 import CategoryPicker from './category-picker'
-import { CreateTransaction } from '@/lib/actions/transactions'
+import { createTransaction } from '@/lib/actions/transactions'
 
 interface Props {
   trigger: ReactNode
@@ -62,7 +62,7 @@ function CreateTransactionDialog({ trigger, type, userId }: Props) {
   const queryClient = useQueryClient()
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (values: CreateTransactionSchemaType) => CreateTransaction(userId, values),
+    mutationFn: (values: CreateTransactionSchemaType) => createTransaction(userId, values),
     onSuccess: () => {
       toast.success('Transaction created successfully 🎉', {
         id: 'create-transaction',
