@@ -1,3 +1,5 @@
+'use server'
+
 import { getDaysInMonth } from 'date-fns'
 import { Period, Timeframe } from '@/types'
 import { db } from '../db'
@@ -107,4 +109,31 @@ async function getMonthHistoryData(userId: string, year: number, month: number) 
   }
 
   return history
+}
+
+export type GetHistoryPeriodsResponseType = Awaited<ReturnType<typeof getHistoryPeriods>>
+
+export async function getHistoryPeriods(userId: string) {
+  const result = await db.monthHistory.findMany({
+    where: {
+      userId,
+    },
+    select: {
+      year: true,
+    },
+    distinct: ['year'],
+    orderBy: [
+      {
+        year: 'asc',
+      },
+    ],
+  })
+
+  const years = result.map((el) => el.year)
+  if (years.length === 0) {
+    // Return the current year
+    return [new Date().getFullYear()]
+  }
+
+  return years
 }

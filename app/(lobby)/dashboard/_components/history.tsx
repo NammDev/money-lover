@@ -1,6 +1,5 @@
 'use client'
 
-// import HistoryPeriodSelector from '@/app/(dashboard)/÷ryPeriodSelector'
 import SkeletonWrapper from '@/components/skeletons/wrapper-skeleton'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -13,6 +12,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import CountUp from 'react-countup'
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { getHistoryData } from '@/lib/actions/history'
+import HistoryPeriodSelector from './history-period-selector'
 
 function History({ userSettings }: { userSettings: UserSettings }) {
   const [timeframe, setTimeframe] = useState<Timeframe>('month')
@@ -42,12 +42,13 @@ function History({ userSettings }: { userSettings: UserSettings }) {
       <Card className='col-span-12 mt-2 w-full'>
         <CardHeader className='gap-2'>
           <CardTitle className='grid grid-flow-row justify-between gap-2 md:grid-flow-col'>
-            {/* <HistoryPeriodSelector
+            <HistoryPeriodSelector
+              userId={userSettings.userId}
               period={period}
               setPeriod={setPeriod}
               timeframe={timeframe}
               setTimeframe={setTimeframe}
-            /> */}
+            />
 
             <div className='flex h-10 gap-2'>
               <Badge variant={'outline'} className='flex items-center gap-2 text-sm'>
