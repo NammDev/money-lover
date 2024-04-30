@@ -29,8 +29,8 @@ function History({ userSettings }: { userSettings: UserSettings }) {
     queryKey: ['overview', 'history', timeframe, period],
     queryFn: () =>
       getHistoryData(userSettings.userId, timeframe, {
-        month: period.year,
-        year: period.month,
+        month: period.month,
+        year: period.year,
       }),
   })
 
