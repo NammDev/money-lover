@@ -1,5 +1,3 @@
-import { productConfig } from '@/config/product'
-import { slugify } from '@/lib/utils'
 import { FooterItem, MainNavItem } from '@/types'
 
 export type SiteConfig = typeof siteConfig
