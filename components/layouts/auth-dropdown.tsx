@@ -62,16 +62,16 @@ export function AuthDropdown({ user, className, ...props }: AuthDropdownProps) {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href='/dashboard/billing'>
+                <Link href='/transactions'>
                   <Icons.credit className='mr-2 size-4' aria-hidden='true' />
-                  Billing
+                  Transactions
                   <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link href='/dashboard/settings'>
+                <Link href='/manage'>
                   <GearIcon className='mr-2 size-4' aria-hidden='true' />
-                  Settings
+                  Category
                   <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                 </Link>
               </DropdownMenuItem>

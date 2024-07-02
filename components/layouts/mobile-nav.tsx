@@ -61,7 +61,7 @@ export function MobileNav({ items }: MobileNavProps) {
         </div>
         <ScrollArea className='my-4 h-[calc(100vh-8rem)] pb-10 pl-6'>
           <div className='pl-1 pr-7'>
-            <Accordion type='multiple' className='w-full'>
+            {/* <Accordion type='multiple' className='w-full'>
               {itemListWithItems?.map((item, index) => (
                 <AccordionItem value={item.title} key={index}>
                   <AccordionTrigger className='text-sm capitalize'>{item.title}</AccordionTrigger>
@@ -89,7 +89,7 @@ export function MobileNav({ items }: MobileNavProps) {
                   </AccordionContent>
                 </AccordionItem>
               ))}
-            </Accordion>
+            </Accordion> */}
             {itemListWithoutItems?.map((item, index) => (
               <Link
                 key={index}

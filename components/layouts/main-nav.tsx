@@ -34,7 +34,7 @@ export function MainNav({ items }: MainNavProps) {
       </Link>
       <NavigationMenu>
         <NavigationMenuList>
-          {items?.[0]?.items ? (
+          {/* {items?.[0]?.items ? (
             <NavigationMenuItem>
               <NavigationMenuTrigger className='h-auto'>{items[0].title}</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -62,7 +62,7 @@ export function MainNav({ items }: MainNavProps) {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-          ) : null}
+          ) : null} */}
           {items
             ?.filter((item) => item.title !== items[0]?.title)
             .map((item) =>

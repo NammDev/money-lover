@@ -17,7 +17,7 @@ export default async function LobyLayout({ children }: LobyLayoutProps) {
         {children}
         {/* {modal} */}
       </main>
-      <SiteFooter />
+      {/* <SiteFooter /> */}
     </div>
   )
 }

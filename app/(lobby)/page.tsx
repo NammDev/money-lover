@@ -33,29 +33,28 @@ export default function IndexPage() {
             className='animate-fade-up text-balance font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl'
             style={{ animationDelay: '0.20s', animationFillMode: 'both' }}
           >
-            An e-commerce skateshop built with everything new in Next.js
+            An finance tracking expense & income built with everything new in Next.js
           </h1>
           <p
             className='max-w-2xl animate-fade-up text-balance leading-normal text-muted-foreground sm:text-xl sm:leading-8'
             style={{ animationDelay: '0.30s', animationFillMode: 'both' }}
           >
-            Buy and sell skateboarding gears from independent brands and stores around the world
-            with ease
+            Tracking income, expense, create category & see chart around the world with ease
           </p>
           <div
             className='flex animate-fade-up flex-wrap items-center justify-center gap-4'
             style={{ animationDelay: '0.40s', animationFillMode: 'both' }}
           >
             <Button asChild>
-              <Link href='/products'>
-                Buy now
-                <span className='sr-only'>Buy now</span>
+              <Link href='/wizard'>
+                Wirazd
+                <span className='sr-only'>Wirazd</span>
               </Link>
             </Button>
             <Button variant='outline' asChild>
-              <Link href='/dashboard/stores'>
-                Sell now
-                <span className='sr-only'>Sell now</span>
+              <Link href='/dashboard'>
+                Dashboard
+                <span className='sr-only'>Dashboard</span>
               </Link>
             </Button>
           </div>
